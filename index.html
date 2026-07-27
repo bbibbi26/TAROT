@@ -3,23 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Celestial Light - 타로 & 점성술</title>
+  <title>Celestial - 현대적인 타로 & 점성술</title>
   <style>
-    /* 1. 디자인 시스템 (컬러 변수 정의) */
+    /* 1. 현대적인 컬러 팔레트 & 변수 정의 */
     :root {
-      /* 배경: 밝은 아이보리 & 소프트 라벤더 */
-      --bg-cream: #FAFAF7;
-      --bg-lavender: #F3EDF7;
+      --bg-base: #F8F6FC;
+      --bg-accent: #EFEAF8;
       
-      /* 포인트 컬러: 화사한 바이올렛 & 샴페인 골드 */
-      --primary-purple: #8A4FFF;
-      --accent-gold: #D4AF37;
-      --gold-glow: rgba(212, 175, 55, 0.3);
+      --purple-main: #7C4DFF;
+      --purple-light: #B388FF;
+      --gold-main: #D4AF37;
+      --gold-light: #F3E5AB;
       
-      /* 텍스트 & 테두리 */
-      --text-main: #2B2536;
-      --text-sub: #6E6879;
-      --card-border: rgba(212, 175, 55, 0.4);
+      --text-heading: #1A1528;
+      --text-body: #5A5266;
+      
+      /* 글래스모피즘 & 쉐도우 */
+      --glass-bg: rgba(255, 255, 255, 0.65);
+      --glass-border: rgba(255, 255, 255, 0.8);
+      --shadow-soft: 0 20px 40px rgba(124, 77, 255, 0.08);
+      --shadow-hover: 0 30px 60px rgba(124, 77, 255, 0.15);
     }
 
     * {
@@ -30,130 +33,183 @@
 
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-lavender) 100%);
-      color: var(--text-main);
+      background: radial-gradient(circle at 50% 0%, #FAF7FF 0%, var(--bg-base) 70%, var(--bg-accent) 100%);
+      color: var(--text-body);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow-x: hidden;
     }
 
-    /* 2. 헤더 영역 */
+    /* 2. 네비게이션 (유리 질감 적용) */
     header {
       width: 100%;
-      padding: 20px 40px;
+      padding: 18px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(250, 250, 247, 0.8);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--card-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 100;
     }
 
     .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--primary-purple);
-      letter-spacing: 1px;
-    }
-
-    .logo span {
-      color: var(--accent-gold);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--purple-main), var(--gold-main));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
     }
 
     /* 3. 히어로 섹션 */
     .hero {
       text-align: center;
-      padding: 80px 20px 40px;
-      max-width: 600px;
+      padding: 100px 20px 50px;
+      max-width: 680px;
+      position: relative;
     }
 
-    .hero-sparkle {
-      font-size: 1.5rem;
-      color: var(--accent-gold);
-      margin-bottom: 12px;
+    /* 빛나는 백그라운드 후광 효과 */
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(179, 136, 255, 0.25) 0%, rgba(255,255,255,0) 70%);
+      z-index: -1;
+      filter: blur(40px);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #A38011;
+      margin-bottom: 24px;
     }
 
     .hero h1 {
-      font-size: 2.2rem;
-      color: var(--text-main);
-      margin-bottom: 16px;
-      font-weight: 700;
+      font-size: 2.8rem;
+      color: var(--text-heading);
+      margin-bottom: 20px;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--purple-main) 0%, #A259FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .hero p {
-      color: var(--text-sub);
-      font-size: 1.05rem;
-      line-height: 1.6;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-body);
+      font-weight: 400;
     }
 
-    /* 4. 타로/점성술 카드 컴포넌트 */
+    /* 4. 카드 컨테이너 & 카드 디자인 (그라데이션 테두리) */
     .cards-container {
       display: flex;
-      gap: 24px;
-      padding: 40px 20px;
-      max-width: 900px;
+      gap: 28px;
+      padding: 40px 20px 80px;
+      max-width: 1000px;
       width: 100%;
       justify-content: center;
       flex-wrap: wrap;
     }
 
+    .card-wrapper {
+      position: relative;
+      border-radius: 24px;
+      padding: 1px; /* 테두리 두께 */
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(124, 77, 255, 0.15));
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
     .card {
-      background: rgba(255, 255, 255, 0.85);
-      border: 1.5px solid var(--card-border);
-      border-radius: 16px;
-      padding: 32px 24px;
-      width: 260px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 23px;
+      padding: 40px 28px;
+      width: 280px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(138, 79, 255, 0.05);
-      transition: all 0.3s ease;
-      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* 카드 호버 효과 (골드 라이트 & 부드러운 확대) */
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent-gold);
-      box-shadow: 0 15px 35px var(--gold-glow);
+    .card-wrapper:hover {
+      transform: translateY(-10px);
+      background: linear-gradient(135deg, var(--gold-main), var(--purple-main));
+      box-shadow: var(--shadow-hover);
     }
 
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
+    .card-icon-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(124, 77, 255, 0.1), rgba(212, 175, 55, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
     }
 
     .card h3 {
-      font-size: 1.25rem;
-      color: var(--primary-purple);
-      margin-bottom: 8px;
+      font-size: 1.3rem;
+      color: var(--text-heading);
+      margin-bottom: 12px;
+      font-weight: 700;
     }
 
     .card p {
       font-size: 0.95rem;
-      color: var(--text-sub);
-      line-height: 1.5;
+      color: var(--text-body);
+      line-height: 1.6;
     }
 
-    /* 5. 버튼 스타일 */
+    /* 5. 현대적인 CTA 버튼 */
     .btn-gold {
-      margin-top: 20px;
-      padding: 12px 28px;
-      background: linear-gradient(135deg, #E5C158 0%, #D4AF37 100%);
-      color: #FFF;
+      margin-top: 36px;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, #EAD07D 0%, #D4AF37 100%);
+      color: #2A2100;
       border: none;
-      border-radius: 25px;
-      font-size: 1rem;
-      font-weight: 600;
+      border-radius: 50px;
+      font-size: 1.05rem;
+      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 15px var(--gold-glow);
-      transition: opacity 0.2s;
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
     }
 
     .btn-gold:hover {
-      opacity: 0.9;
+      transform: scale(1.03);
+      box-shadow: 0 15px 30px rgba(212, 175, 55, 0.45);
     }
   </style>
 </head>
@@ -161,37 +217,47 @@
 
   <!-- 헤더 -->
   <header>
-    <div class="logo">✨ Celestial <span>Tarot</span></div>
+    <div class="logo">✦ CELESTIAL</div>
   </header>
 
   <!-- 히어로 메인 섹션 -->
   <section class="hero">
-    <div class="hero-sparkle">✦ ✧ ✦</div>
-    <h1>당신의 운명을 밝히는 별의 조언</h1>
-    <p>어두운 밤이 아닌 화사한 빛으로 마음을 비춰드립니다.<br>오늘의 타로 카드와 별자리 운세를 확인해 보세요.</p>
-    <button class="btn-gold">오늘의 운세 보기</button>
+    <div class="hero-glow"></div>
+    <div class="badge">✨ DAILY ASTROLOGY & TAROT</div>
+    <h1>빛으로 읽는<br>당신의 <span>오늘과 내일</span></h1>
+    <p>투명하고 화사한 별빛의 조언으로 마음을 정리해 보세요.<br>당신만을 위한 섬세한 운세 리딩이 준비되어 있습니다.</p>
+    <button class="btn-gold">지금 리딩 시작하기</button>
   </section>
 
   <!-- 카드 영역 -->
   <section class="cards-container">
-    <div class="card">
-      <div class="card-icon">🔮</div>
-      <h3>오늘의 타로</h3>
-      <p>당신의 직관을 따라 한 장의 카드를 선택해 보세요.</p>
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-icon-box">🔮</div>
+        <h3>오늘의 타로</h3>
+        <p>당신의 직관을 따라 한 장의 카드를 선택하고 정교한 메시지를 받아보세요.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-icon">⭐</div>
-      <h3>점성술 운세</h3>
-      <p>행성의 배치와 황도 12궁이 전하는 메시지입니다.</p>
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-icon-box">✦</div>
+        <h3>별자리 운세</h3>
+      <p>행성의 이동과 황도 12궁이 전하는 섬세한 에너지를 확인해 보세요.</p>
+      </div>
     </div>
 
-    <div class="card">
-      <div class="card-icon">🌙</div>
-      <h3>달의 주기</h3>
-      <p>신월과 만월이 가져다주는 에너지 흐름을 읽습니다.</p>
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-icon-box">🌙</div>
+        <h3>달의 사이클</h3>
+        <p>신월과 만월이 가져다주는 변화와 성장의 흐름을 읽어드립니다.</p>
+      </div>
     </div>
   </section>
+
+</body>
+</html>
 
 </body>
 </html>
