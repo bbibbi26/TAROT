@@ -5,28 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>타로타로</title>
   <style>
-    /* 1. 현대적인 컬러 팔레트 & 변수 정의 */
+   /* 1. 현대적인 다크 & 엘레강스 컬러 팔레트 정의 */
     :root {
-      --bg-base: #F8F6FC;
-      --bg-accent: #EFEAF8;
-      --purple-main: #7C4DFF;
-      --purple-light: #B388FF;
-      --gold-main: #D4AF37;
-      --gold-light: #F3E5AB;
-      --text-heading: #1A1528;
-      --text-body: #5A5266;
-      /* 글래스모피즘 & 쉐도우 */
-      --glass-bg: rgba(255, 255, 255, 0.75);
-      --glass-border: rgba(255, 255, 255, 0.8);
-      --shadow-soft: 0 20px 40px rgba(124, 77, 255, 0.08);
-      --shadow-hover: 0 30px 60px rgba(124, 77, 255, 0.15);
+      --bg-base: #0B0813;        /* 깊은 밤하늘 느낌의 아주 어두운 남보라색 */
+      --bg-accent: #150F24;      /* 섹션 포인트를 위한 어두운 보라색 */
+      --purple-main: #9D6CFF;    /* 어두운 배경에서 밝게 빛나는 보라색 */
+      --purple-light: #C4A1FF;   /* 은은한 연보라 Highlight */
+      --gold-main: #F1C40F;      /* 선명한 선셋 골드 */
+      --gold-light: #FFEAA7;     /* 밝은 찬란한 금빛 */
+      --text-heading: #F3EFE0;   /* 눈이 편안한 밝은 크림 골드 빛 화이트 */
+      --text-body: #B8B0CC;      /* 차분한 은보라색 본문 텍스트 */
+      
+      /* 글래스모피즘 & 쉐도우 (다크 모드용) */
+      --glass-bg: rgba(21, 15, 36, 0.75);
+      --glass-border: rgba(241, 196, 15, 0.2);
+      --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.5);
+      --shadow-hover: 0 30px 60px rgba(157, 108, 255, 0.25);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      background: radial-gradient(circle at 50% 0%, #FAF7FF 0%, var(--bg-base) 70%, var(--bg-accent) 100%);
+      /* 깊은 우주 느낌의 남색-보라 그라데이션 배경 */
+      background: radial-gradient(circle at 50% 0%, #1A102F 0%, var(--bg-base) 70%, #050308 100%);
       color: var(--text-body);
       min-height: 100vh;
       display: flex;
@@ -45,7 +47,7 @@
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+      border-bottom: 1px solid var(--glass-border);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -54,7 +56,7 @@
       font-size: 1.25rem;
       font-weight: 800;
       letter-spacing: 2px;
-      background: linear-gradient(135deg, var(--purple-main), var(--gold-main));
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-main));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
@@ -68,7 +70,7 @@
       font-size: 0.95rem;
       transition: color 0.3s;
     }
-    nav a:hover { color: var(--purple-main); }
+    nav a:hover { color: var(--gold-main); }
 
     /* 공통 섹션 스타일 */
     section { width: 100%; max-width: 1000px; padding: 60px 20px; }
@@ -86,45 +88,47 @@
     .hero-glow {
       position: absolute; top: 20%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(179, 136, 255, 0.25) 0%, rgba(255,255,255,0) 70%);
-      z-index: -1; filter: blur(40px);
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(157, 108, 255, 0.35) 0%, rgba(11, 8, 19, 0) 70%);
+      z-index: -1; filter: blur(50px);
     }
     .badge {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 16px; background: rgba(212, 175, 55, 0.1);
-      border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 20px;
-      font-size: 0.85rem; font-weight: 600; color: #A38011; margin-bottom: 24px;
+      padding: 6px 16px; background: rgba(241, 196, 15, 0.1);
+      border: 1px solid rgba(241, 196, 15, 0.3); border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600; color: var(--gold-main); margin-bottom: 24px;
     }
     .hero h1 { font-size: 2.8rem; color: var(--text-heading); margin-bottom: 20px; font-weight: 800; line-height: 1.25; }
-    .hero h1 span { background: linear-gradient(135deg, var(--purple-main) 0%, #A259FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero h1 span { background: linear-gradient(135deg, var(--purple-main) 0%, var(--gold-main) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero p { font-size: 1.1rem; line-height: 1.7; color: var(--text-body); }
     .btn-gold {
       margin-top: 36px; padding: 16px 36px;
-      background: linear-gradient(135deg, #EAD07D 0%, #D4AF37 100%);
-      color: #2A2100; border: none; border-radius: 50px;
+      background: linear-gradient(135deg, #FFEAA7 0%, var(--gold-main) 100%);
+      color: #1A102F; border: none; border-radius: 50px;
       font-size: 1.05rem; font-weight: 700; cursor: pointer;
-      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(241, 196, 15, 0.25); transition: all 0.3s ease;
     }
-    .btn-gold:hover { transform: scale(1.03); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.45); }
+    .btn-gold:hover { transform: scale(1.03); box-shadow: 0 15px 35px rgba(241, 196, 15, 0.4); }
 
     /* 4. 카드 컨테이너 */
     .cards-container { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
     .card-wrapper {
       position: relative; border-radius: 24px; padding: 1px;
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(124, 77, 255, 0.15));
+      background: linear-gradient(135deg, rgba(241, 196, 15, 0.4), rgba(157, 108, 255, 0.2));
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card {
-      background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(20px);
+      background: rgba(21, 15, 36, 0.85); backdrop-filter: blur(20px);
       border-radius: 23px; padding: 40px 28px; width: 280px; text-align: center;
       box-shadow: var(--shadow-soft); height: 100%; display: flex; flex-direction: column; align-items: center;
+      border: 1px solid var(--glass-border);
     }
     .card-wrapper:hover { transform: translateY(-10px); background: linear-gradient(135deg, var(--gold-main), var(--purple-main)); box-shadow: var(--shadow-hover); }
     .card-icon-box {
       width: 64px; height: 64px; border-radius: 18px;
-      background: linear-gradient(135deg, rgba(124, 77, 255, 0.1), rgba(212, 175, 55, 0.15));
+      background: linear-gradient(135deg, rgba(157, 108, 255, 0.2), rgba(241, 196, 15, 0.15));
       display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 24px;
+      border: 1px solid rgba(241, 196, 15, 0.2);
     }
     .card h3 { font-size: 1.3rem; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; }
     .card p { font-size: 0.95rem; color: var(--text-body); line-height: 1.6; }
@@ -132,40 +136,40 @@
     /* 5. 이용 메뉴얼 섹션 */
     .manual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .manual-item {
-      background: rgba(255, 255, 255, 0.6); border: 1px solid var(--glass-border);
+      background: rgba(21, 15, 36, 0.7); border: 1px solid var(--glass-border);
       border-radius: 16px; padding: 24px; backdrop-filter: blur(10px);
     }
-    .manual-step { font-size: 0.85rem; font-weight: 800; color: var(--purple-main); margin-bottom: 8px; display: block; }
+    .manual-step { font-size: 0.85rem; font-weight: 800; color: var(--gold-main); margin-bottom: 8px; display: block; }
     .manual-item h4 { font-size: 1.1rem; color: var(--text-heading); margin-bottom: 8px; }
-    .manual-item p { font-size: 0.9rem; line-height: 1.5; }
+    .manual-item p { font-size: 0.9rem; line-height: 1.5; color: var(--text-body); }
 
     /* 6. 블로그 & 리뷰 섹션 */
     .review-form {
-      background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px);
+      background: rgba(21, 15, 36, 0.85); backdrop-filter: blur(12px);
       border-radius: 20px; padding: 24px; margin-bottom: 40px;
       box-shadow: var(--shadow-soft); border: 1px solid var(--glass-border);
     }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; font-weight: 600; color: var(--text-heading); }
     .form-group input, .form-group textarea, .form-group select {
-      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #E0D9EC;
-      background: #FAF8FF; font-family: inherit; font-size: 0.95rem; outline: none;
+      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(157, 108, 255, 0.3);
+      background: #150F24; color: var(--text-heading); font-family: inherit; font-size: 0.95rem; outline: none;
     }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--purple-main); }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold-main); }
     .btn-submit {
-      padding: 12px 28px; background: var(--purple-main); color: white;
-      border: none; border-radius: 30px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.3s;
+      padding: 12px 28px; background: linear-gradient(135deg, var(--purple-main), #7C4DFF); color: white;
+      border: none; border-radius: 30px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s;
     }
-    .btn-submit:hover { background: #6832F0; }
+    .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
 
     .reviews-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .review-card {
-      background: rgba(255, 255, 255, 0.7); border-radius: 16px; padding: 20px;
+      background: rgba(21, 15, 36, 0.75); border-radius: 16px; padding: 20px;
       border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft);
     }
     .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
     .review-author { font-weight: 700; color: var(--text-heading); }
-    .review-stars { color: #FFB800; font-size: 0.9rem; }
+    .review-stars { color: var(--gold-main); font-size: 0.9rem; }
     .review-text { font-size: 0.95rem; line-height: 1.5; color: var(--text-body); }
   </style>
 </head>
