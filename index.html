@@ -5,30 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>타로타로</title>
   <style>
-/* 1. 화사하고 밝은 라이트 퍼플 & 파스텔 골드 컬러 팔레트 */
+/* 1. 고급스러운 앤틱 골드 & 딥 올리브 그린 팔레트 */
     :root {
-      --bg-base: #3B2D59;        /* 확연히 밝아진 세련된 라이트 딥 퍼플 */
-      --bg-accent: #4A3A6E;      /* 은은하게 밝은 섹션 보라색 */
-      --purple-main: #C89BFF;    /* 화사하고 밝은 파스텔 핑크보라 */
-      --purple-light: #E8D7FF;   /* 부드럽고 환한 연보라 Highlight */
-      --gold-main: #FFD700;      /* 화사하게 반짝이는 맑은 리얼 골드 */
-      --gold-light: #FFF5C0;     /* 환하게 빛나는 샴페인 골드 */
-      --text-heading: #FFFFFF;   /* 선명한 화이트 */
-      --text-body: #EAE3F7;      /* 눈에 가독성이 아주 뛰어난 소프트 라벤더 텍스트 */
+      --bg-base: #1C231B;        /* 묵직하고 깊은 딥 올리브 그린 */
+      --bg-accent: #252F24;      /* 차분하고 세련된 포레스트 그린 */
+      --green-highlight: #4A5D47;/* 은은한 에메랄드 올리브 톤 */
+      --gold-main: #D4AF37;      /* 고급스러운 리얼 앤틱 골드 */
+      --gold-light: #F3E5AB;     /* 따뜻하고 은은한 샴페인 골드 */
+      --text-heading: #FAF8F5;   /* 고급스러운 오프화이트/크림 */
+      --text-body: #C8D1C7;      /* 눈이 편안한 차분한 세이지 그린-세이지 화이트 */
       
-      /* 글래스모피즘 & 쉐도우 (밝은 다크 모드용) */
-      --glass-bg: rgba(74, 58, 110, 0.7);
-      --glass-border: rgba(255, 215, 0, 0.35);
-      --shadow-soft: 0 15px 35px rgba(22, 14, 40, 0.3);
-      --shadow-hover: 0 25px 50px rgba(200, 155, 255, 0.35);
+      /* 글래스모피즘 & 쉐도우 (클래식 모드용) */
+      --glass-bg: rgba(37, 47, 36, 0.75);
+      --glass-border: rgba(212, 175, 55, 0.25);
+      --shadow-soft: 0 15px 35px rgba(10, 15, 10, 0.4);
+      --shadow-hover: 0 25px 50px rgba(212, 175, 55, 0.2);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      /* 화사하고 넓어 보이는 라벤더-퍼플 은하수 배경 */
-      background: radial-gradient(circle at 50% 0%, #543E7A 0%, var(--bg-base) 65%, #2B1E45 100%);
+      /* 딥 올리브 & 앤틱 우드 그라데이션 */
+      background: radial-gradient(circle at 50% 0%, #2A3628 0%, var(--bg-base) 65%, #121712 100%);
       color: var(--text-body);
       min-height: 100vh;
       display: flex;
@@ -89,13 +88,13 @@
       position: absolute; top: 20%; left: 50%;
       transform: translate(-50%, -50%);
       width: 420px; height: 420px;
-      background: radial-gradient(circle, rgba(200, 155, 255, 0.45) 0%, rgba(59, 45, 89, 0) 70%);
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, rgba(28, 35, 27, 0) 70%);
       z-index: -1; filter: blur(50px);
     }
     .badge {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 16px; background: rgba(255, 215, 0, 0.2);
-      border: 1px solid rgba(255, 215, 0, 0.5); border-radius: 20px;
+      padding: 6px 16px; background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 20px;
       font-size: 0.85rem; font-weight: 600; color: var(--gold-light); margin-bottom: 24px;
     }
     .hero h1 { font-size: 2.8rem; color: var(--text-heading); margin-bottom: 20px; font-weight: 800; line-height: 1.25; }
@@ -103,32 +102,32 @@
     .hero p { font-size: 1.1rem; line-height: 1.7; color: var(--text-body); }
     .btn-gold {
       margin-top: 36px; padding: 16px 36px;
-      background: linear-gradient(135deg, #FFF5C0 0%, var(--gold-main) 100%);
-      color: #2B1E45; border: none; border-radius: 50px;
+      background: linear-gradient(135deg, #F3E5AB 0%, var(--gold-main) 100%);
+      color: #121712; border: none; border-radius: 50px;
       font-size: 1.05rem; font-weight: 800; cursor: pointer;
-      box-shadow: 0 10px 25px rgba(255, 215, 0, 0.35); transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.25); transition: all 0.3s ease;
     }
-    .btn-gold:hover { transform: scale(1.03); box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5); }
+    .btn-gold:hover { transform: scale(1.03); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4); }
 
     /* 4. 카드 컨테이너 */
     .cards-container { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
     .card-wrapper {
       position: relative; border-radius: 24px; padding: 1px;
-      background: linear-gradient(135deg, rgba(255, 215, 0, 0.5), rgba(200, 155, 255, 0.35));
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(74, 93, 71, 0.3));
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card {
-      background: rgba(74, 58, 110, 0.85); backdrop-filter: blur(20px);
+      background: rgba(37, 47, 36, 0.85); backdrop-filter: blur(20px);
       border-radius: 23px; padding: 40px 28px; width: 280px; text-align: center;
       box-shadow: var(--shadow-soft); height: 100%; display: flex; flex-direction: column; align-items: center;
       border: 1px solid var(--glass-border);
     }
-    .card-wrapper:hover { transform: translateY(-10px); background: linear-gradient(135deg, var(--gold-main), var(--purple-main)); box-shadow: var(--shadow-hover); }
+    .card-wrapper:hover { transform: translateY(-10px); background: linear-gradient(135deg, var(--gold-main), var(--green-highlight)); box-shadow: var(--shadow-hover); }
     .card-icon-box {
       width: 64px; height: 64px; border-radius: 18px;
-      background: linear-gradient(135deg, rgba(200, 155, 255, 0.3), rgba(255, 215, 0, 0.25));
+      background: linear-gradient(135deg, rgba(74, 93, 71, 0.4), rgba(212, 175, 55, 0.2));
       display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 24px;
-      border: 1px solid rgba(255, 215, 0, 0.4);
+      border: 1px solid rgba(212, 175, 55, 0.3);
     }
     .card h3 { font-size: 1.3rem; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; }
     .card p { font-size: 0.95rem; color: var(--text-body); line-height: 1.6; }
@@ -136,7 +135,7 @@
     /* 5. 이용 메뉴얼 섹션 */
     .manual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .manual-item {
-      background: rgba(74, 58, 110, 0.75); border: 1px solid var(--glass-border);
+      background: rgba(37, 47, 36, 0.75); border: 1px solid var(--glass-border);
       border-radius: 16px; padding: 24px; backdrop-filter: blur(10px);
     }
     .manual-step { font-size: 0.85rem; font-weight: 800; color: var(--gold-light); margin-bottom: 8px; display: block; }
@@ -145,26 +144,26 @@
 
     /* 6. 블로그 & 리뷰 섹션 */
     .review-form {
-      background: rgba(74, 58, 110, 0.85); backdrop-filter: blur(12px);
+      background: rgba(37, 47, 36, 0.85); backdrop-filter: blur(12px);
       border-radius: 20px; padding: 24px; margin-bottom: 40px;
       box-shadow: var(--shadow-soft); border: 1px solid var(--glass-border);
     }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; font-weight: 600; color: var(--text-heading); }
     .form-group input, .form-group textarea, .form-group select {
-      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(200, 155, 255, 0.4);
-      background: #32254C; color: var(--text-heading); font-family: inherit; font-size: 0.95rem; outline: none;
+      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(212, 175, 55, 0.3);
+      background: #192018; color: var(--text-heading); font-family: inherit; font-size: 0.95rem; outline: none;
     }
     .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold-main); }
     .btn-submit {
-      padding: 12px 28px; background: linear-gradient(135deg, var(--purple-main), #A562FF); color: white;
-      border: none; border-radius: 30px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s;
+      padding: 12px 28px; background: linear-gradient(135deg, var(--gold-main), #B89628); color: #121712;
+      border: none; border-radius: 30px; font-size: 0.95rem; font-weight: 800; cursor: pointer; transition: all 0.3s;
     }
     .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
 
     .reviews-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .review-card {
-      background: rgba(74, 58, 110, 0.8); border-radius: 16px; padding: 20px;
+      background: rgba(37, 47, 36, 0.8); border-radius: 16px; padding: 20px;
       border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft);
     }
     .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
@@ -177,7 +176,7 @@
 
   <!-- 1. 네비게이션 -->
   <header>
-    <a href="#" class="logo">✦[톤베리] 시로가네26-17</a>
+    <a href="#" class="logo">✦ [톤베리]시로가네26-17</a>
     <nav>
       <a href="#tarot">타로란?</a>
       <a href="#manual">이용 메뉴얼</a>
