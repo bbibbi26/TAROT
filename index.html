@@ -5,30 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>타로타로</title>
   <style>
-   /* 1. 현대적인 다크 & 엘레강스 컬러 팔레트 정의 */
+ /* 1. 적절한 톤의 미드나잇 퍼플 & 금색 변수 정의 */
     :root {
-      --bg-base: #0B0813;        /* 깊은 밤하늘 느낌의 아주 어두운 남보라색 */
-      --bg-accent: #150F24;      /* 섹션 포인트를 위한 어두운 보라색 */
-      --purple-main: #9D6CFF;    /* 어두운 배경에서 밝게 빛나는 보라색 */
-      --purple-light: #C4A1FF;   /* 은은한 연보라 Highlight */
-      --gold-main: #F1C40F;      /* 선명한 선셋 골드 */
-      --gold-light: #FFEAA7;     /* 밝은 찬란한 금빛 */
-      --text-heading: #F3EFE0;   /* 눈이 편안한 밝은 크림 골드 빛 화이트 */
-      --text-body: #B8B0CC;      /* 차분한 은보라색 본문 텍스트 */
+      --bg-base: #1A142A;        /* 너무 어둡지 않은 깊은 밤보라색 */
+      --bg-accent: #261D3B;      /* 부드럽고 따뜻한 세컨더리 보라색 */
+      --purple-main: #AC7DFF;    /* 화사한 네온 파스텔 보라색 */
+      --purple-light: #D4B8FF;   /* 은은한 연보라 Highlight */
+      --gold-main: #F4C430;      /* 따뜻하고 선명한 사프란 골드 */
+      --gold-light: #FFF0B3;     /* 밝은 찬란한 금빛 */
+      --text-heading: #FFFFFF;   /* 선명하고 또렷한 화이트 */
+      --text-body: #D1CAE3;      /* 눈이 편안하고 잘 보이는 연보라색 텍스트 */
       
-      /* 글래스모피즘 & 쉐도우 (다크 모드용) */
-      --glass-bg: rgba(21, 15, 36, 0.75);
-      --glass-border: rgba(241, 196, 15, 0.2);
-      --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.5);
-      --shadow-hover: 0 30px 60px rgba(157, 108, 255, 0.25);
+      /* 글래스모피즘 & 쉐도우 */
+      --glass-bg: rgba(38, 29, 59, 0.75);
+      --glass-border: rgba(244, 196, 48, 0.25);
+      --shadow-soft: 0 15px 35px rgba(10, 6, 20, 0.4);
+      --shadow-hover: 0 25px 50px rgba(172, 125, 255, 0.25);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-      /* 깊은 우주 느낌의 남색-보라 그라데이션 배경 */
-      background: radial-gradient(circle at 50% 0%, #1A102F 0%, var(--bg-base) 70%, #050308 100%);
+      /* 답답하지 않게 톤을 살짝 올린 밤하늘 은하수 그라데이션 */
+      background: radial-gradient(circle at 50% 0%, #2E214A 0%, var(--bg-base) 60%, #120D1F 100%);
       color: var(--text-body);
       min-height: 100vh;
       display: flex;
@@ -88,37 +88,37 @@
     .hero-glow {
       position: absolute; top: 20%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(157, 108, 255, 0.35) 0%, rgba(11, 8, 19, 0) 70%);
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(172, 125, 255, 0.4) 0%, rgba(26, 20, 42, 0) 70%);
       z-index: -1; filter: blur(50px);
     }
     .badge {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 6px 16px; background: rgba(241, 196, 15, 0.1);
-      border: 1px solid rgba(241, 196, 15, 0.3); border-radius: 20px;
+      padding: 6px 16px; background: rgba(244, 196, 48, 0.15);
+      border: 1px solid rgba(244, 196, 48, 0.4); border-radius: 20px;
       font-size: 0.85rem; font-weight: 600; color: var(--gold-main); margin-bottom: 24px;
     }
     .hero h1 { font-size: 2.8rem; color: var(--text-heading); margin-bottom: 20px; font-weight: 800; line-height: 1.25; }
-    .hero h1 span { background: linear-gradient(135deg, var(--purple-main) 0%, var(--gold-main) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero h1 span { background: linear-gradient(135deg, var(--purple-light) 0%, var(--gold-main) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     .hero p { font-size: 1.1rem; line-height: 1.7; color: var(--text-body); }
     .btn-gold {
       margin-top: 36px; padding: 16px 36px;
-      background: linear-gradient(135deg, #FFEAA7 0%, var(--gold-main) 100%);
-      color: #1A102F; border: none; border-radius: 50px;
+      background: linear-gradient(135deg, #FFF0B3 0%, var(--gold-main) 100%);
+      color: #1F1535; border: none; border-radius: 50px;
       font-size: 1.05rem; font-weight: 700; cursor: pointer;
-      box-shadow: 0 10px 25px rgba(241, 196, 15, 0.25); transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(244, 196, 48, 0.3); transition: all 0.3s ease;
     }
-    .btn-gold:hover { transform: scale(1.03); box-shadow: 0 15px 35px rgba(241, 196, 15, 0.4); }
+    .btn-gold:hover { transform: scale(1.03); box-shadow: 0 15px 35px rgba(244, 196, 48, 0.45); }
 
     /* 4. 카드 컨테이너 */
     .cards-container { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
     .card-wrapper {
       position: relative; border-radius: 24px; padding: 1px;
-      background: linear-gradient(135deg, rgba(241, 196, 15, 0.4), rgba(157, 108, 255, 0.2));
+      background: linear-gradient(135deg, rgba(244, 196, 48, 0.45), rgba(172, 125, 255, 0.25));
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .card {
-      background: rgba(21, 15, 36, 0.85); backdrop-filter: blur(20px);
+      background: rgba(38, 29, 59, 0.85); backdrop-filter: blur(20px);
       border-radius: 23px; padding: 40px 28px; width: 280px; text-align: center;
       box-shadow: var(--shadow-soft); height: 100%; display: flex; flex-direction: column; align-items: center;
       border: 1px solid var(--glass-border);
@@ -126,9 +126,9 @@
     .card-wrapper:hover { transform: translateY(-10px); background: linear-gradient(135deg, var(--gold-main), var(--purple-main)); box-shadow: var(--shadow-hover); }
     .card-icon-box {
       width: 64px; height: 64px; border-radius: 18px;
-      background: linear-gradient(135deg, rgba(157, 108, 255, 0.2), rgba(241, 196, 15, 0.15));
+      background: linear-gradient(135deg, rgba(172, 125, 255, 0.25), rgba(244, 196, 48, 0.2));
       display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 24px;
-      border: 1px solid rgba(241, 196, 15, 0.2);
+      border: 1px solid rgba(244, 196, 48, 0.3);
     }
     .card h3 { font-size: 1.3rem; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; }
     .card p { font-size: 0.95rem; color: var(--text-body); line-height: 1.6; }
@@ -136,7 +136,7 @@
     /* 5. 이용 메뉴얼 섹션 */
     .manual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
     .manual-item {
-      background: rgba(21, 15, 36, 0.7); border: 1px solid var(--glass-border);
+      background: rgba(38, 29, 59, 0.75); border: 1px solid var(--glass-border);
       border-radius: 16px; padding: 24px; backdrop-filter: blur(10px);
     }
     .manual-step { font-size: 0.85rem; font-weight: 800; color: var(--gold-main); margin-bottom: 8px; display: block; }
@@ -145,26 +145,26 @@
 
     /* 6. 블로그 & 리뷰 섹션 */
     .review-form {
-      background: rgba(21, 15, 36, 0.85); backdrop-filter: blur(12px);
+      background: rgba(38, 29, 59, 0.85); backdrop-filter: blur(12px);
       border-radius: 20px; padding: 24px; margin-bottom: 40px;
       box-shadow: var(--shadow-soft); border: 1px solid var(--glass-border);
     }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; font-weight: 600; color: var(--text-heading); }
     .form-group input, .form-group textarea, .form-group select {
-      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(157, 108, 255, 0.3);
-      background: #150F24; color: var(--text-heading); font-family: inherit; font-size: 0.95rem; outline: none;
+      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid rgba(172, 125, 255, 0.35);
+      background: #201733; color: var(--text-heading); font-family: inherit; font-size: 0.95rem; outline: none;
     }
     .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--gold-main); }
     .btn-submit {
-      padding: 12px 28px; background: linear-gradient(135deg, var(--purple-main), #7C4DFF); color: white;
+      padding: 12px 28px; background: linear-gradient(135deg, var(--purple-main), #8D52FF); color: white;
       border: none; border-radius: 30px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.3s;
     }
     .btn-submit:hover { opacity: 0.9; transform: translateY(-2px); }
 
     .reviews-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
     .review-card {
-      background: rgba(21, 15, 36, 0.75); border-radius: 16px; padding: 20px;
+      background: rgba(38, 29, 59, 0.8); border-radius: 16px; padding: 20px;
       border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft);
     }
     .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
