@@ -334,7 +334,7 @@
       orderBy 
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // 1. Firebase 프로젝트 설정 (설정해두신 키 그대로 유지)
+    // 1. Firebase 프로젝트 설정
     const firebaseConfig = {
       apiKey: "AIzaSyDGLQk1KFJ6Fju6c4R9WlPAtX6tIvyNWfM",
       authDomain: "tarot-d6728.firebaseapp.com",
@@ -348,7 +348,7 @@
     // 2. 관리자 전용 삭제 비밀번호
     const ADMIN_PASSWORD = "bbibbi1234";
 
-    // Firebase 및 Firestore 초기화
+    // Firebase 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const reviewsCollection = collection(db, "reviews");
@@ -356,7 +356,7 @@
     const commentForm = document.getElementById('commentForm');
     const reviewsList = document.getElementById('reviewsList');
 
-    // 3. 저장된 후기 목록 불러오기 (최신순)
+    // 3. 후기 목록 가져오기 (최신순)
     async function loadReviews() {
       reviewsList.innerHTML = '';
       try {
@@ -394,7 +394,7 @@
       reviewsList.appendChild(reviewCard);
     }
 
-    // 5. 후기 등록 (Firestore DB에 저장)
+    // 5. 후기 등록 (Firestore DB 저장)
     commentForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
@@ -417,29 +417,29 @@
         loadReviews();
       } catch (error) {
         console.error("등록 실패:", error);
-        alert("후기 등록 중 오류가 발생했습니다. (Firestore 보안 규칙을 확인해주세요)");
+        alert("후기 등록 중 오류가 발생했습니다.");
       }
     });
 
-    // 6. 호스트(관리자) 삭제 기능
+    // 6. 호스트 삭제 기능
     async function deleteReview(docId) {
       const inputPassword = prompt("후기를 삭제하려면 관리자 비밀번호를 입력하세요:");
       
       if (inputPassword === ADMIN_PASSWORD) {
         try {
           await deleteDoc(doc(db, "reviews", docId));
-          alert("데이터베이스에서 후기가 완전히 삭제되었습니다.");
+          alert("후기가 완전히 삭제되었습니다.");
           loadReviews();
         } catch (error) {
           console.error("삭제 실패:", error);
           alert("삭제 중 오류가 발생했습니다.");
         }
       } else if (inputPassword !== null) {
-        alert("비밀번호가 올바르지 않습니다. 호스트만 삭제할 수 있습니다.");
+        alert("비밀번호가 올바르지 않습니다.");
       }
     }
 
-    // 초기 실행
+    // 페이지 진입 시 후기 불러오기
     loadReviews();
   </script>
 </body>
