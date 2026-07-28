@@ -9,28 +9,21 @@
     :root {
       --bg-base: #F8F6FC;
       --bg-accent: #EFEAF8;
-      
       --purple-main: #7C4DFF;
       --purple-light: #B388FF;
       --gold-main: #D4AF37;
       --gold-light: #F3E5AB;
-      
       --text-heading: #1A1528;
       --text-body: #5A5266;
-      
       /* 글래스모피즘 & 쉐도우 */
-      --glass-bg: rgba(255, 255, 255, 0.65);
+      --glass-bg: rgba(255, 255, 255, 0.75);
       --glass-border: rgba(255, 255, 255, 0.8);
       --shadow-soft: 0 20px 40px rgba(124, 77, 255, 0.08);
       --shadow-hover: 0 30px 60px rgba(124, 77, 255, 0.15);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
       background: radial-gradient(circle at 50% 0%, #FAF7FF 0%, var(--bg-base) 70%, var(--bg-accent) 100%);
@@ -42,7 +35,7 @@
       overflow-x: hidden;
     }
 
-    /* 2. 네비게이션 (유리 질감 적용) */
+    /* 2. 네비게이션 */
     header {
       width: 100%;
       padding: 18px 40px;
@@ -57,7 +50,6 @@
       top: 0;
       z-index: 100;
     }
-
     .logo {
       font-size: 1.25rem;
       font-weight: 800;
@@ -66,7 +58,23 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       text-transform: uppercase;
+      text-decoration: none;
     }
+    nav { display: flex; gap: 24px; }
+    nav a {
+      text-decoration: none;
+      color: var(--text-heading);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--purple-main); }
+
+    /* 공통 섹션 스타일 */
+    section { width: 100%; max-width: 1000px; padding: 60px 20px; }
+    .section-title { text-align: center; margin-bottom: 40px; }
+    .section-title h2 { font-size: 2rem; color: var(--text-heading); margin-bottom: 10px; }
+    .section-title p { font-size: 1rem; color: var(--text-body); }
 
     /* 3. 히어로 섹션 */
     .hero {
@@ -75,162 +83,115 @@
       max-width: 680px;
       position: relative;
     }
-
-    /* 빛나는 백그라운드 후광 효과 */
     .hero-glow {
-      position: absolute;
-      top: 20%;
-      left: 50%;
+      position: absolute; top: 20%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 300px;
-      height: 300px;
+      width: 300px; height: 300px;
       background: radial-gradient(circle, rgba(179, 136, 255, 0.25) 0%, rgba(255,255,255,0) 70%);
-      z-index: -1;
-      filter: blur(40px);
+      z-index: -1; filter: blur(40px);
     }
-
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 16px;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #A38011;
-      margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 16px; background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600; color: #A38011; margin-bottom: 24px;
     }
-
-    .hero h1 {
-      font-size: 2.8rem;
-      color: var(--text-heading);
-      margin-bottom: 20px;
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -0.5px;
+    .hero h1 { font-size: 2.8rem; color: var(--text-heading); margin-bottom: 20px; font-weight: 800; line-height: 1.25; }
+    .hero h1 span { background: linear-gradient(135deg, var(--purple-main) 0%, #A259FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { font-size: 1.1rem; line-height: 1.7; color: var(--text-body); }
+    .btn-gold {
+      margin-top: 36px; padding: 16px 36px;
+      background: linear-gradient(135deg, #EAD07D 0%, #D4AF37 100%);
+      color: #2A2100; border: none; border-radius: 50px;
+      font-size: 1.05rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); transition: all 0.3s ease;
     }
+    .btn-gold:hover { transform: scale(1.03); box-shadow: 0 15px 30px rgba(212, 175, 55, 0.45); }
 
-    .hero h1 span {
-      background: linear-gradient(135deg, var(--purple-main) 0%, #A259FF 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: var(--text-body);
-      font-weight: 400;
-    }
-
-    /* 4. 카드 컨테이너 & 카드 디자인 (그라데이션 테두리) */
-    .cards-container {
-      display: flex;
-      gap: 28px;
-      padding: 40px 20px 80px;
-      max-width: 1000px;
-      width: 100%;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
+    /* 4. 카드 컨테이너 */
+    .cards-container { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; }
     .card-wrapper {
-      position: relative;
-      border-radius: 24px;
-      padding: 1px; /* 테두리 두께 */
+      position: relative; border-radius: 24px; padding: 1px;
       background: linear-gradient(135deg, rgba(212, 175, 55, 0.4), rgba(124, 77, 255, 0.15));
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-
     .card {
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 23px;
-      padding: 40px 28px;
-      width: 280px;
-      text-align: center;
-      box-shadow: var(--shadow-soft);
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(20px);
+      border-radius: 23px; padding: 40px 28px; width: 280px; text-align: center;
+      box-shadow: var(--shadow-soft); height: 100%; display: flex; flex-direction: column; align-items: center;
     }
-
-    .card-wrapper:hover {
-      transform: translateY(-10px);
-      background: linear-gradient(135deg, var(--gold-main), var(--purple-main));
-      box-shadow: var(--shadow-hover);
-    }
-
+    .card-wrapper:hover { transform: translateY(-10px); background: linear-gradient(135deg, var(--gold-main), var(--purple-main)); box-shadow: var(--shadow-hover); }
     .card-icon-box {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
+      width: 64px; height: 64px; border-radius: 18px;
       background: linear-gradient(135deg, rgba(124, 77, 255, 0.1), rgba(212, 175, 55, 0.15));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.8rem;
-      margin-bottom: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 24px;
     }
+    .card h3 { font-size: 1.3rem; color: var(--text-heading); margin-bottom: 12px; font-weight: 700; }
+    .card p { font-size: 0.95rem; color: var(--text-body); line-height: 1.6; }
 
-    .card h3 {
-      font-size: 1.3rem;
-      color: var(--text-heading);
-      margin-bottom: 12px;
-      font-weight: 700;
+    /* 5. 이용 메뉴얼 섹션 */
+    .manual-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .manual-item {
+      background: rgba(255, 255, 255, 0.6); border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 24px; backdrop-filter: blur(10px);
     }
+    .manual-step { font-size: 0.85rem; font-weight: 800; color: var(--purple-main); margin-bottom: 8px; display: block; }
+    .manual-item h4 { font-size: 1.1rem; color: var(--text-heading); margin-bottom: 8px; }
+    .manual-item p { font-size: 0.9rem; line-height: 1.5; }
 
-    .card p {
-      font-size: 0.95rem;
-      color: var(--text-body);
-      line-height: 1.6;
+    /* 6. 블로그 & 리뷰 섹션 */
+    .review-form {
+      background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px);
+      border-radius: 20px; padding: 24px; margin-bottom: 40px;
+      box-shadow: var(--shadow-soft); border: 1px solid var(--glass-border);
     }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; font-weight: 600; color: var(--text-heading); }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #E0D9EC;
+      background: #FAF8FF; font-family: inherit; font-size: 0.95rem; outline: none;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--purple-main); }
+    .btn-submit {
+      padding: 12px 28px; background: var(--purple-main); color: white;
+      border: none; border-radius: 30px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: background 0.3s;
+    }
+    .btn-submit:hover { background: #6832F0; }
 
-    /* 5. 현대적인 CTA 버튼 */
-    .btn-gold {
-      margin-top: 36px;
-      padding: 16px 36px;
-      background: linear-gradient(135deg, #EAD07D 0%, #D4AF37 100%);
-      color: #2A2100;
-      border: none;
-      border-radius: 50px;
-      font-size: 1.05rem;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
-      transition: all 0.3s ease;
-      letter-spacing: 0.5px;
+    .reviews-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .review-card {
+      background: rgba(255, 255, 255, 0.7); border-radius: 16px; padding: 20px;
+      border: 1px solid var(--glass-border); box-shadow: var(--shadow-soft);
     }
-
-    .btn-gold:hover {
-      transform: scale(1.03);
-      box-shadow: 0 15px 30px rgba(212, 175, 55, 0.45);
-    }
+    .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .review-author { font-weight: 700; color: var(--text-heading); }
+    .review-stars { color: #FFB800; font-size: 0.9rem; }
+    .review-text { font-size: 0.95rem; line-height: 1.5; color: var(--text-body); }
   </style>
 </head>
 <body>
 
-  <!-- 헤더 -->
+  <!-- 1. 네비게이션 -->
   <header>
-    <div class="logo">✦ CELESTIAL</div>
+    <a href="#" class="logo">✦ CELESTIAL</a>
+    <nav>
+      <a href="#tarot">오늘의 타로</a>
+      <a href="#manual">이용 메뉴얼</a>
+      <a href="#reviews">블로그/후기</a>
+    </nav>
   </header>
 
-  <!-- 히어로 메인 섹션 -->
+  <!-- 2. 히어로 메인 섹션 -->
   <section class="hero">
     <div class="hero-glow"></div>
     <div class="badge">✨ DAILY ASTROLOGY & TAROT</div>
     <h1>빛으로 읽는<br>당신의 <span>오늘과 내일</span></h1>
     <p>투명하고 화사한 별빛의 조언으로 마음을 정리해 보세요.<br>당신만을 위한 섬세한 운세 리딩이 준비되어 있습니다.</p>
-    <button class="btn-gold">지금 리딩 시작하기</button>
+    <button class="btn-gold" onclick="location.href='#tarot'">지금 리딩 시작하기</button>
   </section>
 
-  <!-- 카드 영역 -->
-  <section class="cards-container">
+  <!-- 3. 타로 카테고리 영역 -->
+  <section id="tarot" class="cards-container">
     <div class="card-wrapper">
       <div class="card">
         <div class="card-icon-box">🔮</div>
@@ -238,15 +199,13 @@
         <p>당신의 직관을 따라 한 장의 카드를 선택하고 정교한 메시지를 받아보세요.</p>
       </div>
     </div>
-
     <div class="card-wrapper">
       <div class="card">
         <div class="card-icon-box">✦</div>
         <h3>별자리 운세</h3>
-      <p>행성의 이동과 황도 12궁이 전하는 섬세한 에너지를 확인해 보세요.</p>
+        <p>행성의 이동과 황도 12궁이 전하는 섬세한 에너지를 확인해 보세요.</p>
       </div>
     </div>
-
     <div class="card-wrapper">
       <div class="card">
         <div class="card-icon-box">🌙</div>
@@ -256,8 +215,112 @@
     </div>
   </section>
 
-</body>
-</html>
+  <!-- 4. 이용 메뉴얼 섹션 -->
+  <section id="manual">
+    <div class="section-title">
+      <h2>📖 타로 리딩 메뉴얼</h2>
+      <p>Celestial을 올바르게 이용하고 마음에 온전한 조언을 얻는 방법입니다.</p>
+    </div>
+    <div class="manual-grid">
+      <div class="manual-item">
+        <span class="manual-step">STEP 01</span>
+        <h4>마음 가다듬기</h4>
+        <p>리딩 전 심호흡을 3회 하고, 현재 궁금한 점이나 마음에 품은 상상을 명확하게 떠올려보세요.</p>
+      </div>
+      <div class="manual-item">
+        <span class="manual-step">STEP 02</span>
+        <h4>직관적인 카드 선택</h4>
+        <p>마음이 이끄는 카드를 선택하세요. 고민하지 않고 첫 느낌대로 고르는 것이 가장 정확합니다.</p>
+      </div>
+      <div class="manual-item">
+        <span class="manual-step">STEP 03</span>
+        <h4>메시지 해석하기</h4>
+        <p>카드가 주는 기운과 키워드를 바탕으로, 나의 현재 상황에 어떻게 연결할지 차분히 느껴보세요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 블로그 & 리뷰 섹션 -->
+  <section id="reviews">
+    <div class="section-title">
+      <h2>✍️ 리딩 후기 & 블로그</h2>
+      <p>오늘 받은 카드에 대한 느낌이나 생각을 자유롭게 남겨주세요.</p>
+    </div>
+
+    <!-- 리뷰 작성 폼 -->
+    <div class="review-form">
+      <form id="commentForm">
+        <div class="form-group">
+          <label for="username">닉네임</label>
+          <input type="text" id="username" placeholder="닉네임을 입력하세요" required>
+        </div>
+        <div class="form-group">
+          <label for="rating">만족도</label>
+          <select id="rating">
+            <option value="5">★★★★★ (매우 만족)</option>
+            <option value="4">★★★★☆ (만족)</option>
+            <option value="3">★★★☆☆ (보통)</option>
+            <option value="2">★★☆☆☆ (아쉬움)</option>
+            <option value="1">★☆☆☆☆ (불만족)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="comment">후기 / 생각 남기기</label>
+          <textarea id="comment" rows="3" placeholder="타로 리딩을 통해 느낀 점이나 기록을 남겨보세요." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">등록하기</button>
+      </form>
+    </div>
+
+    <!-- 리뷰 목록 -->
+    <div class="reviews-list" id="reviewsList">
+      <div class="review-card">
+        <div class="review-header">
+          <span class="review-author">별빛술사</span>
+          <span class="review-stars">★★★★★</span>
+        </div>
+        <p class="review-text">오늘 마음이 싱숭생숭했는데, '더 풀' 카드를 뽑고 용기를 얻었습니다. 디자인도 너무 예뻐서 매일 들를 것 같아요!</p>
+      </div>
+      <div class="review-card">
+        <div class="review-header">
+          <span class="review-author">루나</span>
+          <span class="review-stars">★★★★☆</span>
+        </div>
+        <p class="review-text">메뉴얼에 적힌 대로 마음을 정돈하고 뽑으니 조언이 더 깊게 와닿네요. 만족스럽습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 리뷰 등록 자바스크립트 -->
+  <script>
+    document.getElementById('commentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const ratingVal = document.getElementById('rating').value;
+      const comment = document.getElementById('comment').value;
+
+      const stars = '★'.repeat(ratingVal) + '☆'.repeat(5 - ratingVal);
+
+      const reviewCard = document.createElement('div');
+      reviewCard.className = 'review-card';
+      reviewCard.innerHTML = `
+        <div class="review-header">
+          <span class="review-author">${username}</span>
+          <span class="review-stars">${stars}</span>
+        </div>
+        <p class="review-text">${comment}</p>
+      `;
+
+      const reviewsList = document.getElementById('reviewsList');
+      reviewsList.insertBefore(reviewCard, reviewsList.firstChild);
+
+      // Reset Form
+      document.getElementById('username').value = '';
+      document.getElementById('comment').value = '';
+      alert('후기가 성공적으로 등록되었습니다!');
+    });
+  </script>
 
 </body>
 </html>
