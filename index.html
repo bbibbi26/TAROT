@@ -320,7 +320,142 @@
       document.getElementById('comment').value = '';
       alert('후기가 성공적으로 등록되었습니다!');
     });
-  </script>
+ <!-- Firebase SDK (v10 모듈 라이브러리) 불러오기 -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    deleteDoc, 
+    doc, 
+    query, 
+    orderBy 
+  } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDGLQk1KFJ6Fju6c4R9WlPAtX6tIvyNWfM",
+  authDomain: "tarot-d6728.firebaseapp.com",
+  projectId: "tarot-d6728",
+  storageBucket: "tarot-d6728.firebasestorage.app",
+  messagingSenderId: "682025280574",
+  appId: "1:682025280574:web:3f26b615b846a156ecdd6f",
+  measurementId: "G-GT7L7BW207"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+  };
+
+  // 2. 관리자 전용 삭제 비밀번호 설정
+  const ADMIN_PASSWORD = "bbibbi1234"; // 원하는 비밀번호로 변경하세요
+
+  // Firebase 초기화
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const reviewsCollection = collection(db, "reviews");
+
+  const commentForm = document.getElementById('commentForm');
+  const reviewsList = document.getElementById('reviewsList');
+
+  // 3. 저장된 후기 불러오기 (최신순 정렬)
+  async function loadReviews() {
+    reviewsList.innerHTML = ''; // 기존 목록 초기화
+    try {
+      const q = query(reviewsCollection, orderBy("createdAt", "desc"));
+      const querySnapshot = await getDocs(q);
+      
+      querySnapshot.forEach((docSnap) => {
+        const data = docSnap.data();
+        renderReviewCard(docSnap.id, data);
+      });
+    } catch (error) {
+      console.error("후기 불러오기 실패:", error);
+    }
+  }
+
+  // 화면에 후기 카드 그리드 생성
+  function renderReviewCard(docId, data) {
+    const stars = '★'.repeat(data.rating) + '☆'.repeat(5 - data.rating);
+    const reviewCard = document.createElement('div');
+    reviewCard.className = 'review-card';
+    reviewCard.id = `review-${docId}`;
+    
+    reviewCard.innerHTML = `
+      <div class="review-header">
+        <span class="review-author">${data.username}</span>
+        <div>
+          <span class="review-stars">${stars}</span>
+          <button class="btn-delete" data-id="${docId}" style="margin-left: 8px; background: none; border: none; color: #ff5252; cursor: pointer; font-size: 0.8rem; font-weight: bold;">[삭제]</button>
+        </div>
+      </div>
+      <p class="review-text">${data.comment}</p>
+    `;
+
+    // 삭제 버튼 클릭 이벤트 등록
+    reviewCard.querySelector('.btn-delete').addEventListener('click', () => deleteReview(docId));
+    reviewsList.appendChild(reviewCard);
+  }
+
+  // 4. 새로운 후기 등록 (데이터베이스 저장)
+  commentForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const username = document.getElementById('username').value;
+    const ratingVal = parseInt(document.getElementById('rating').value);
+    const comment = document.getElementById('comment').value;
+
+    try {
+      await addDoc(reviewsCollection, {
+        username: username,
+        rating: ratingVal,
+        comment: comment,
+        createdAt: new Date()
+      });
+
+      alert('후기가 성공적으로 등록되었습니다!');
+      document.getElementById('username').value = '';
+      document.getElementById('comment').value = '';
+      
+      // 목록 새로고침
+      loadReviews();
+    } catch (error) {
+      console.error("등록 실패:", error);
+      alert("후기 등록 중 오류가 발생했습니다.");
+    }
+  });
+
+  // 5. 호스트(관리자) 삭제 기능
+  async function deleteReview(docId) {
+    const inputPassword = prompt("후기를 삭제하려면 관리자 비밀번호를 입력하세요:");
+    
+    if (inputPassword === ADMIN_PASSWORD) {
+      try {
+        await deleteDoc(doc(db, "reviews", docId));
+        alert("데이터베이스에서 후기가 완전히 삭제되었습니다.");
+        loadReviews(); // 목록 갱신
+      } catch (error) {
+        console.error("삭제 실패:", error);
+        alert("삭제 중 오류가 발생했습니다.");
+      }
+    } else if (inputPassword !== null) {
+      alert("비밀번호가 올바르지 않습니다. 호스트만 삭제할 수 있습니다.");
+    }
+  }
+
+  // 페이지 로드 시 후기 목록 읽어오기
+  loadReviews();
+</script>
 
 </body>
 </html>
