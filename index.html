@@ -334,7 +334,7 @@
       orderBy 
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // 1. Firebase 프로젝트 설정
+    // 1. Firebase 프로젝트 설정 (설정해주신 설정값 그대로)
     const firebaseConfig = {
       apiKey: "AIzaSyDGLQk1KFJ6Fju6c4R9WlPAtX6tIvyNWfM",
       authDomain: "tarot-d6728.firebaseapp.com",
@@ -356,9 +356,9 @@
     const commentForm = document.getElementById('commentForm');
     const reviewsList = document.getElementById('reviewsList');
 
-    // 3. 후기 목록 가져오기 (최신순)
+    // 3. Firestore에서 후기 불러오기 (최신순)
     async function loadReviews() {
-      reviewsList.innerHTML = '';
+      reviewsList.innerHTML = ''; // 초기화
       try {
         const q = query(reviewsCollection, orderBy("createdAt", "desc"));
         const querySnapshot = await getDocs(q);
@@ -372,7 +372,7 @@
       }
     }
 
-    // 4. 후기 카드 화면 출력
+    // 4. 화면에 후기 카드 출력
     function renderReviewCard(docId, data) {
       const stars = '★'.repeat(data.rating) + '☆'.repeat(5 - data.rating);
       const reviewCard = document.createElement('div');
@@ -394,7 +394,7 @@
       reviewsList.appendChild(reviewCard);
     }
 
-    // 5. 후기 등록 (Firestore DB 저장)
+    // 5. 후기 등록 (데이터베이스 저장)
     commentForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
@@ -414,14 +414,14 @@
         document.getElementById('username').value = '';
         document.getElementById('comment').value = '';
         
-        loadReviews();
+        loadReviews(); // 목록 새로고침
       } catch (error) {
         console.error("등록 실패:", error);
         alert("후기 등록 중 오류가 발생했습니다.");
       }
     });
 
-    // 6. 호스트 삭제 기능
+    // 6. 관리자 삭제 기능
     async function deleteReview(docId) {
       const inputPassword = prompt("후기를 삭제하려면 관리자 비밀번호를 입력하세요:");
       
@@ -429,7 +429,7 @@
         try {
           await deleteDoc(doc(db, "reviews", docId));
           alert("후기가 완전히 삭제되었습니다.");
-          loadReviews();
+          loadReviews(); // 목록 갱신
         } catch (error) {
           console.error("삭제 실패:", error);
           alert("삭제 중 오류가 발생했습니다.");
@@ -439,7 +439,7 @@
       }
     }
 
-    // 페이지 진입 시 후기 불러오기
+    // 페이지 진입 시 실행
     loadReviews();
   </script>
 </body>
