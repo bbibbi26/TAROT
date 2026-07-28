@@ -291,35 +291,6 @@
     </div>
   </section>
 
-  <!-- 6. 리뷰 등록 자바스크립트 -->
-  <script>
-    document.getElementById('commentForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const username = document.getElementById('username').value;
-      const ratingVal = document.getElementById('rating').value;
-      const comment = document.getElementById('comment').value;
-
-      const stars = '★'.repeat(ratingVal) + '☆'.repeat(5 - ratingVal);
-
-      const reviewCard = document.createElement('div');
-      reviewCard.className = 'review-card';
-      reviewCard.innerHTML = `
-        <div class="review-header">
-          <span class="review-author">${username}</span>
-          <span class="review-stars">${stars}</span>
-        </div>
-        <p class="review-text">${comment}</p>
-      `;
-
-      const reviewsList = document.getElementById('reviewsList');
-      reviewsList.insertBefore(reviewCard, reviewsList.firstChild);
-
-      // Reset Form
-      document.getElementById('username').value = '';
-      document.getElementById('comment').value = '';
-      alert('후기가 성공적으로 등록되었습니다!');
-    });
 <!-- 6. Firebase & 후기 관리 자바스크립트 -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -334,7 +305,7 @@
       orderBy 
     } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    // 1. Firebase 설정 정보
+    // Firebase 설정 (tarot-d6728 프로젝트 정보)
     const firebaseConfig = {
       apiKey: "AIzaSyDGLQk1KFJ6Fju6c4R9WlPAtX6tIvyNWfM",
       authDomain: "tarot-d6728.firebaseapp.com",
@@ -345,10 +316,9 @@
       measurementId: "G-GT7L7BW207"
     };
 
-    // 2. 관리자 삭제 비밀번호
+    // 호스트 전용 삭제 비밀번호
     const ADMIN_PASSWORD = "bbibbi1234";
 
-    // Firebase 초기화
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
     const reviewsCollection = collection(db, "reviews");
@@ -356,7 +326,7 @@
     const commentForm = document.getElementById('commentForm');
     const reviewsList = document.getElementById('reviewsList');
 
-    // 3. 후기 불러오기
+    // DB에서 후기 불러오기
     async function loadReviews() {
       reviewsList.innerHTML = '';
       try {
@@ -372,7 +342,7 @@
       }
     }
 
-    // 4. 후기 카드 화면 출력
+    // 카드 출력
     function renderReviewCard(docId, data) {
       const stars = '★'.repeat(data.rating) + '☆'.repeat(5 - data.rating);
       const reviewCard = document.createElement('div');
@@ -394,7 +364,7 @@
       reviewsList.appendChild(reviewCard);
     }
 
-    // 5. 후기 등록 (DB 저장)
+    // DB에 등록하기
     commentForm.addEventListener('submit', async function(e) {
       e.preventDefault();
       
@@ -421,7 +391,7 @@
       }
     });
 
-    // 6. 관리자 삭제 기능
+    // 관리자 삭제
     async function deleteReview(docId) {
       const inputPassword = prompt("후기를 삭제하려면 관리자 비밀번호를 입력하세요:");
       
@@ -439,7 +409,6 @@
       }
     }
 
-    // 초기 실행
     loadReviews();
   </script>
 </body>
